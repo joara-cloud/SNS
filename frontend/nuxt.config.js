@@ -55,7 +55,7 @@ export default {
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
-    // customVariables: ['~/assets/variables.scss'], // variables.scss 컴파일이 늦어져서 굳이 우선 사용하지 않기로
+    customVariables: ['~/assets/scss/variables.scss'], // variables.scss 컴파일이 늦어져서 굳이 우선 사용하지 않기로
     // treeShake: true,
     theme: {
       dark: false,

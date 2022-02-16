@@ -1,9 +1,12 @@
 <template>
   <v-app>
     <v-toolbar color="green">
-      <v-toolbar-title>
-        <nuxt-link to="/">v-sns</nuxt-link>
-      </v-toolbar-title>
+      <h1 class="logo">
+        <nuxt-link to="/">
+          <!-- <v-icon>mdi-heart</v-icon> -->
+          AR
+        </nuxt-link>
+      </h1>
       <v-spacer></v-spacer>
       <v-toolbar-items class="d-flex align-center">
         <v-text-field label="검색" hide-details prepend-icon="mdi-magnify"></v-text-field> <!-- input태그임 / 아이콘은 v-text-field에 prepend-icon을 넘겨주면 됨 / 인풋아래 디테일(영역)이 없어짐 -->
@@ -26,10 +29,14 @@
 import LoginForm from '../components/LoginForm.vue'
 export default {
   components: { LoginForm },
-
+  computed: {
+    name() {
+      return this.$store.state.posts.name; // 모듈에서 접근할 때는 this.$store로 접근
+    }
+  }
 }
 </script>
 
 <style>
-.v-application--wrap {min-height:auto}
+@import url('@/assets/scss/layout.scss');
 </style>

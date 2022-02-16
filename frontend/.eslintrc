@@ -1,16 +1,16 @@
 {
-  "parsetOptions": {
-    "ecmaVersion": 2019, //js 문법버젼
-    "sourceType": "module" // script system 안쓰고 vue는 다 import하는 형식이라서 module 
-  },
   "env": {
     "browser": true,
     "node": true
   },
+  // "parsetOptions": {
+  //   "ecmaVersion": 2019,
+  //   "sourceType": "module" // script system 안쓰고 vue는 다 import하는 형식이라서 module 
+  // },
 
   // 아래 3개를 원하는대로 정의하면 됨
   "extends": [
-    "plugin:vue/recommended" // vue에서 추천하는 내용
+    // "plugin:vue/recommended" // vue에서 추천하는 내용
   ],
   "plugins": [
 
