@@ -7,6 +7,7 @@
           @input 입력될떄마다
         -->
         <v-textarea
+          v-model="content"
           outlined
           auto-grow
           clearable
@@ -30,10 +31,11 @@
 export default {
   data() {
     return {
-      hideDetails: false,
+      hideDetails: true,
       successMessage: '',
       success: false,
-      valid: false
+      valid: false,
+      content: ''
     }
   },
   computed: {
@@ -43,11 +45,13 @@ export default {
   },
   methods: {
     onChangeTextarea(txt) {
-      
+      this.hideDetails = false;
     },
     onSubmit() {
       if(this.$refs.form.validate()) {
-        this.$store.dispatch('posts/ADD_POST', 'sdf')
+        this.$store.dispatch('posts/addMainPost', {
+          content: this.content
+        })
       }
     }
   }
