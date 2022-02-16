@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container v-if="!me">
     <v-card>
       <v-form ref="form" v-model="valid" @submit.prevent="onSubmitForm">
         <v-container>
@@ -23,6 +23,12 @@
       </v-form>
     </v-card>
   </v-container>
+  <v-container v-else>
+    <v-card>
+      로그인이 되었습니다.
+      <v-btn>로그아웃</v-btn>
+    </v-card>
+  </v-container>
 </template>
 
 <script>
@@ -38,6 +44,11 @@ export default {
       passwordRules: [
         v => !!v || '비밀번호는 필수입니다.'
       ]
+    }
+  },
+  computed: {
+    me() {
+      return this.$store.state.users.me;
     }
   },
   methods: {

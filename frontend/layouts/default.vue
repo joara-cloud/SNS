@@ -14,6 +14,7 @@
         <v-btn text nuxt to="/signup">회원가입</v-btn> <!-- text를 붙이면 버튼 모양이 아닌 그냥 텍스트 모양 -->
       </v-toolbar-items>
     </v-toolbar>
+
     <v-row no-gutters>
       <v-col cols="12" md="4" xs="12"> 
         <login-form></login-form>
@@ -31,7 +32,15 @@ export default {
   components: { LoginForm },
   computed: {
     name() {
-      return this.$store.state.posts.name; // 모듈에서 접근할 때는 this.$store로 접근
+      // 1. 모듈에서 접근할 때는 this.$store로 접근
+      // 2. store의 posts는.js 모듈의 데이터에 접근할꺼라 posts.name!! posts는 posts.js를 뜻함
+      // 3. index.js에 있는 값은 그냥 this.$store.state.name로 접근!
+      return this.$store.state.posts.name; 
+    }
+  },
+  methods: {
+    onChangeName() {
+      this.$store.commit('posts/BYE') // posts는 posts.js를 뜻함
     }
   }
 }

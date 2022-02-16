@@ -77,7 +77,14 @@ export default {
   },
   methods: {
     onSubmitForm() {
-      this.$refs.form.validate(); // :rules에 정의해놓은 조건들이 모두 맞아야 this.valid의 값이 true로 떨어짐!!! (vuetify)
+      // this.$refs.form.validate(); // :rules에 정의해놓은 조건들이 모두 맞아야 this.valid의 값이 true로 떨어짐!!! (vuetify)
+
+      if(this.$refs.form.validate()) {
+        this.$store.dispatch('users/signUp', {
+          nickname: this.nickname,
+          email: this.email,
+        })
+      }
 
       console.log(this.valid);
     }
