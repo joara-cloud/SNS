@@ -25,7 +25,7 @@ export const actions = {
 
     commit('setMe', payload); // payload는 회원정보
   },
-  logIn({commit}, payload) {
+  logOut({commit}, payload) {
 
     commit('setMe', null); // payload는 회원정보
   },

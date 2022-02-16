@@ -62,3 +62,7 @@ body, .v-application {font-family: $body-font-family;}
 .theme--light.v-icon {color:inherit}
 .theme--light.v-card > .v-card__text, .theme--light.v-card > .v-card__subtitle {color:#222}
 
+// [form] hide-details
+.v-text-field__details,
+.v-messages {min-height:auto;}
+.v-messages__message {margin:0 0 10px}

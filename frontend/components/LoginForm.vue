@@ -25,8 +25,8 @@
   </v-container>
   <v-container v-else>
     <v-card>
-      로그인이 되었습니다.
-      <v-btn>로그아웃</v-btn>
+      {{me.nickname}}님 로그인이 되었습니다.
+      <v-btn @click="onLogOut">로그아웃</v-btn>
     </v-card>
   </v-container>
 </template>
@@ -53,9 +53,18 @@ export default {
   },
   methods: {
     onSubmitForm() {
-      this.$refs.form.validate(); // :rules에 정의해놓은 조건들이 모두 맞아야 this.valid의 값이 true로 떨어짐!!! (vuetify)
+      // this.$refs.form.validate(); // :rules에 정의해놓은 조건들이 모두 맞아야 this.valid의 값이 true로 떨어짐!!! (vuetify)
+      if(this.$refs.form.validate()) {
+        this.$store.dispatch('users/logIn',{
+          email: this.email,
+          nickname: '아라조',
+        })
+      }
 
       console.log(this.valid);
+    },
+    onLogOut() {
+      this.$store.dispatch('users/logOut');
     }
   }
 }

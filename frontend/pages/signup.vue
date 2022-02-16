@@ -84,9 +84,15 @@ export default {
           nickname: this.nickname,
           email: this.email,
         })
+        .then(() => { // dispath는 promise를 반환한다!!! 회원가입이 성공적으로 완료된 후 페이지가 넘어가야하므로 then을 사용함
+          this.$router.push({
+            path: '/',
+          })
+        })  
+        .catch(() => {
+          alert('회원가입 실패');
+        })      
       }
-
-      console.log(this.valid);
     }
   }
 }
