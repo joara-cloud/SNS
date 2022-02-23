@@ -1,6 +1,7 @@
 <template>
   <v-container>
     <post-form v-if="me"></post-form> <!-- 로그인하면 나오는 입력창 -->
+    <post-form></post-form> <!-- 로그인하면 나오는 입력창 -->
     <div>
       <post-card></post-card>
       <post-card></post-card>

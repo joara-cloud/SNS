@@ -1,15 +1,17 @@
 <template>
   <v-card class="mb-3">
+    
     <v-card-title>
-      <v-avatar color="grey darken-3">
+      <!-- <v-avatar color="grey darken-3">
         <img
           src="https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light"
           alt="John"
         >
-      </v-avatar>
-      <span class="text-h6 font-weight-light ml-3">Evan You</span>
+      </v-avatar> -->
+      <span class="text-subtitle-1">Evan You</span>
     </v-card-title>
-    <v-card-text class="text-h7 font-weight-bold">
+
+    <v-card-text class="text-h7">
       "Turns out semicolon-less style is easier and safer in TS because most gotcha edge cases are type invalid as well."
     </v-card-text>
 

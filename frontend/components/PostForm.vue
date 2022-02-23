@@ -15,11 +15,11 @@
           :hide-details="hideDetails"
           :success-message="successMessage"
           :success="success"
-          :rules="[v => !!v || '내용을 입력하세요.']"
+          :rules="[v => !!v.trim() || '내용을 입력하세요.']"
           @input="onChangeTextarea" 
         />
         <div class="text-right">
-          <v-btn type="submit">이미지첨부</v-btn>
+          <v-btn>이미지첨부</v-btn>
           <v-btn type="submit" color="green" class="ml-2">제출</v-btn>
         </div>
       </v-form>
@@ -28,6 +28,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   data() {
     return {
@@ -39,9 +41,11 @@ export default {
     }
   },
   computed: {
-    me() {
-      return this.$store.state.posts.post;
-    }
+    // me() {
+    //   return this.$store.state.posts.post;
+    // },
+    // ...mapState(['users/me']),
+    ...mapState('users', ['me'])
   },
   methods: {
     onChangeTextarea(txt) {
@@ -50,7 +54,23 @@ export default {
     onSubmit() {
       if(this.$refs.form.validate()) {
         this.$store.dispatch('posts/addMainPost', {
-          content: this.content
+          content: this.content,
+          user: {
+            nickName: this.me.nickname,
+          },
+          // comments: [],
+          // images: [],
+          id: Date.now(),
+          createdAt: Date.now(),
+        })
+        .then(() => {
+          this.hideDetails = true;
+          this.success = false;
+
+          this.successMessage = '게시글 등록 성공';
+        })
+        .catch(() => {
+
         })
       }
     }
