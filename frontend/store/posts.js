@@ -1,5 +1,14 @@
 export const state = () => ({ // state는 함수형태!!
-  mainPosts: []
+  mainPosts: [
+    {
+      id: 0,
+      contents: 'jsidofj',
+      user: {
+        nickname: 'arajo'
+
+      }
+    }
+  ]
 })
 
 export const mutations = { // mutations는 객체형태!! 상수화 대문자화!!
@@ -7,7 +16,8 @@ export const mutations = { // mutations는 객체형태!! 상수화 대문자화
     state.mainPosts.unshift(payload)
   },
   removeMainPost(state, payload) {
-    state.mainPosts.unshift(payload)
+    const postIndex = state.mainPosts.findId(v => v.id === payload.id);
+    state.mainPosts.splice(postIndex, 1);
   }
 }
 

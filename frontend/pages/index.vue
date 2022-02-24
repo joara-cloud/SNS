@@ -1,18 +1,14 @@
 <template>
   <v-container>
     <post-form v-if="me"></post-form> <!-- 로그인하면 나오는 입력창 -->
-    <post-form></post-form> <!-- 로그인하면 나오는 입력창 -->
     <div>
-      <post-card></post-card>
-      <post-card></post-card>
-      <post-card></post-card>
-      <post-card></post-card>
       <post-card></post-card>
     </div>
   </v-container>
 </template>
 
 <script>
+import {mapState} from 'vuex' ;
 import PostCard from '../components/PostCard.vue'
 import PostForm from '../components/PostForm.vue'
 
@@ -24,7 +20,8 @@ export default {
   computed: {
     me() {
       return this.$store.state.users.me;
-    }
+    },
+    ...mapState('posts', ['mainPosts'])
   }
 }
 </script>

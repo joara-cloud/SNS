@@ -58,7 +58,7 @@
     url('../fonts/Pretendard-Light.woff') format('woff');
 }
 
-body, .v-application {font-family: $body-font-family;}
+body, .v-application {font-family: $body-font-family;font-weight: $body-font-weight;}
 .theme--light.v-icon {color:inherit}
 .theme--light.v-card > .v-card__text, .theme--light.v-card > .v-card__subtitle {color:#222}
 

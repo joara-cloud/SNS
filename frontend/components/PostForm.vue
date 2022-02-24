@@ -1,13 +1,14 @@
 <template>
   <div>
     <v-container class="mb-7">
+
       <v-form ref="form" v-model="valid" @submit.prevent="onSubmit">
         <!-- 
           auto-grow 줄이 길어지면 자동으로 길어짐
           @input 입력될떄마다
         -->
         <v-textarea
-          v-model="content"
+          v-model="contents"
           outlined
           auto-grow
           clearable
@@ -15,7 +16,7 @@
           :hide-details="hideDetails"
           :success-message="successMessage"
           :success="success"
-          :rules="[v => !!v.trim() || '내용을 입력하세요.']"
+          :rules="[v => !!v || '내용을 입력하세요.']"
           @input="onChangeTextarea" 
         />
         <div class="text-right">
@@ -37,7 +38,7 @@ export default {
       successMessage: '',
       success: false,
       valid: false,
-      content: ''
+      contents: ''
     }
   },
   computed: {
@@ -45,7 +46,7 @@ export default {
     //   return this.$store.state.posts.post;
     // },
     // ...mapState(['users/me']),
-    ...mapState('users', ['me'])
+    ...mapState('users', ['me']),
   },
   methods: {
     onChangeTextarea(txt) {
@@ -53,10 +54,10 @@ export default {
     },
     onSubmit() {
       if(this.$refs.form.validate()) {
-        this.$store.dispatch('posts/addMainPost', {
-          content: this.content,
+        this.$store.dispatch('posts/ADD_POST', {
+          contents: this.contents,
           user: {
-            nickName: this.me.nickname,
+            nickname: this.me.nickname,
           },
           // comments: [],
           // images: [],
