@@ -14,7 +14,7 @@
           clearable
           label="어떤 신기한 일이 있었나요?"
           :hide-details="hideDetails"
-          :success-message="successMessage"
+          :success-messages="successMessage"
           :success="success"
           :rules="[v => !!v || '내용을 입력하세요.']"
           @input="onChangeTextarea" 
@@ -50,7 +50,8 @@ export default {
   },
   methods: {
     onChangeTextarea(txt) {
-      this.hideDetails = false;
+      console.log('ajsdif');
+      this.hideDetails = true;
     },
     onSubmit() {
       if(this.$refs.form.validate()) {
@@ -65,14 +66,21 @@ export default {
           createdAt: Date.now(),
         })
         .then(() => {
-          this.hideDetails = true;
-          this.success = false;
+          this.hideDetails = false;
+          this.success = true;
+
+          // this.contents = '';
 
           this.successMessage = '게시글 등록 성공';
         })
         .catch(() => {
 
         })
+      }else {
+        console.log('submit 되지 않음');
+        
+        this.hideDetails = false;
+        this.successMessage = '다시 확인해주세요';
       }
     }
   }

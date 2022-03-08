@@ -1,8 +1,8 @@
 <template>
   <v-container>
     <post-form v-if="me"></post-form> <!-- 로그인하면 나오는 입력창 -->
-    <div>
-      <post-card></post-card>
+    <div v-if="mainPosts">
+      <post-card v-for="p in mainPosts" :key="p.id" :post="p" class="mb-3"></post-card>
     </div>
   </v-container>
 </template>
