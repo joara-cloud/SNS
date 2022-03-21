@@ -16,7 +16,7 @@
         <v-btn text small color="green">
           <v-icon>mdi-heart-outline</v-icon>
         </v-btn>
-        <v-btn text small color="green">
+        <v-btn text small color="green" @click="onToggleComment">
           <v-icon>mdi-comment</v-icon>
         </v-btn>
 
@@ -34,14 +34,26 @@
           </v-list>
         </v-menu>
 
-
       </v-card-actions>
     </v-card>
+    <template v-if="commentOpend">
+      <commentForm :postId="post.id"></commentForm>
+      <v-list>
+        <v-list-item>
+          <v-list-item-avatar color="teal">sdf</v-list-item-avatar>
+          <v-list-item-content>
+            <v-list-item-title>title</v-list-item-title>
+            <v-list-item-subtitle>subtitle</v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </template>
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
+import commentForm from './CommentForm.vue';
 
 export default {
   props: {
@@ -49,6 +61,9 @@ export default {
       type: Object,
       required: true
     }
+  },
+  components: {
+    commentForm
   },
   created() {},
   computed: {
@@ -67,6 +82,7 @@ export default {
           event: 'onRemovePost'
         },
       ],
+      commentOpend: false
     };
   },
   methods: {
@@ -85,6 +101,9 @@ export default {
     onEditPost() {
       console.log("수정");
     },
+    onToggleComment() {
+      this.commentOpend = !this.commentOpend;
+    }
   },
 };
 </script>

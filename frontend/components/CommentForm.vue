@@ -1,13 +1,16 @@
 <template>
-  <v-form ref="form" v-model="valid" @submit.prevent="onSubmitForm">
+  <v-form ref="form" v-model="valid" @submit.prevent="onSubmitForm" class="mt-3">
     <v-textarea 
       v-model="content"
       :hide-details="hideDetails"
       :success="success"
       :success-messages="successMessages"
       @input="onChangeTextarea"
+      outlined
     ></v-textarea>
-    <v-btn type="submit">등록</v-btn>
+    <div class="text-right mt-3">
+      <v-btn type="submit" outlined>등록</v-btn>
+    </div>
   </v-form>
 </template>
 
@@ -15,7 +18,11 @@
 export default {
   data() {
     return {
-      valid: false
+      valid: false,
+      content: '',
+      success: false,
+      successMessages: '',
+      hideDetails: true
     }
   },
   props: {
@@ -37,7 +44,12 @@ export default {
     },
     onSubmitForm() {
       this.$store.dispatch('posts/ADD_COMMENT', {
-
+        id: Date.now(),
+        postId: this.postId,
+        content: this.valid,
+        user: {
+          nickname: this.me.nickname
+        }
       })
       .then(() => {
         this.content = '';
